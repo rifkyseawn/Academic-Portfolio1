@@ -439,3 +439,43 @@ html[data-theme="dark"] .navbar-toggler-icon{
 [data-theme="light"] .btn-pill.colab:hover { background:#FFF4D6; }
 [data-theme="dark"]  .btn-pill.colab:hover { background:#4a3b00; }
 
+/* ===== Absolute optical-centering for desktop ===== */
+@media (min-width: 768px){
+  /* pastikan parent bisa jadi anchor posisi */
+  #top-nav .navbar-collapse{
+    position: relative !important;
+  }
+
+  /* reset rules lama agar tidak bentrok */
+  #top-nav #navbarList{
+    position: static !important;
+    left: auto !important;
+    transform: none !important;
+  }
+
+  /* center benar² di tengah collapse */
+  #top-nav .navbar-collapse > #navbarList{
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+    width: max-content !important;    /* menyusut ke lebar isi */
+    margin: 0 !important;
+    gap: 1.25rem;                      /* jarak antar item */
+  }
+
+  /* kontrol kanan tetap nempel di sisi kanan */
+  #top-nav .navbar-nav.ms-auto{
+    margin-left: auto !important;
+    position: relative; z-index: 2;
+  }
+}
+
+/* Mobile: kembali ke layout Bootstrap biasa */
+@media (max-width: 767.98px){
+  #top-nav #navbarList{
+    position: static !important;
+    transform: none !important;
+    width: auto !important;
+  }
+}

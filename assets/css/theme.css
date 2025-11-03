@@ -479,3 +479,13 @@ html[data-theme="dark"] .navbar-toggler-icon{
     width: auto !important;
   }
 }
+
+/* Matikan click area kartu, tapi link/tombol di dalamnya tetap bisa diklik */
+.clickable{
+  pointer-events: none;            /* area kartu tidak menerima klik */
+  cursor: default;
+}
+.clickable a,
+.clickable button{
+  pointer-events: auto;            /* link/tombol tetap aktif */
+}

@@ -1066,6 +1066,30 @@ document.addEventListener('click', function(e){
 </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1) Area kartu hanya buka URL default kalau klik BUKAN pada <a> / <button>
+  document.querySelectorAll('.clickable').forEach(card => {
+    // Ambil URL default kartu (mis: <div class="d-none" data-card-url="..."></div>)
+    const holder = card.querySelector('[data-card-url]');
+    const url = holder ? holder.getAttribute('data-card-url') : '';
+
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a,button')) return; // tombol/link: biarkan
+      if (url) window.open(url, '_blank', 'noopener');
+    });
+  });
+
+  // 2) Cegah bubbling dari tombol/link agar handler kartu tak ikut terpanggil
+  document.querySelectorAll('.clickable a, .clickable button').forEach(el => {
+    el.addEventListener('click', (e) => e.stopPropagation());
+  });
+});
+</script>
+
+
+
+
 </body>
 
 </html>
